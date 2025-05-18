@@ -1,0 +1,8 @@
+# Ignorar carpeta vendor
+/vendor/
+
+# Ignorar archivos de PHPUnit
+.phpunit.result.cache
+
+# Ignorar configuraciones del entorno local
+.env
