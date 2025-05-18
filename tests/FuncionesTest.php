@@ -38,4 +38,15 @@ final class FuncionesTest extends TestCase
             rename($rutaTemporal, $rutaOriginal);
         }
     }
+
+    public function testProcesarTextoConStopwordsYMayusculas(): void
+    {
+        $stopwords = ['el' => true, 'y' => true];
+        $texto = "El gato y el perro son amigos.";
+        $resultado = Funciones::procesarTexto($texto, $stopwords);
+        $this->assertArrayNotHasKey('el', $resultado);
+        $this->assertArrayNotHasKey('y', $resultado);
+        $this->assertArrayHasKey('gato', $resultado);
+        $this->assertEquals(1, $resultado['gato']);
+    }
 }
