@@ -18,4 +18,24 @@ final class FuncionesTest extends TestCase
         $resultado = Funciones::quitarTildes($texto);
         $this->assertEquals("hola mundo", $resultado);
     }
+
+    public function testCargarStopwordsArchivoNoExiste(): void
+    {
+        // Renombramos temporalmente el archivo para simular que no existe
+        $rutaOriginal = __DIR__ . '/../stopwords.txt';
+        $rutaTemporal = __DIR__ . '/../stopwords_backup.txt';
+
+        if (file_exists($rutaOriginal)) {
+            rename($rutaOriginal, $rutaTemporal);
+        }
+
+        $stopwords = Funciones::cargarStopwords();
+        $this->assertIsArray($stopwords);
+        $this->assertEmpty($stopwords);
+
+        // Restauramos archivo
+        if (file_exists($rutaTemporal)) {
+            rename($rutaTemporal, $rutaOriginal);
+        }
+    }
 }
