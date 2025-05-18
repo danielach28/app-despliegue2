@@ -21,4 +21,12 @@ class Funciones
 
         return $stopwords;
     }
+
+    
+     public static function quitarTildes(string $texto): string
+    {
+        $originales = ['á','é','í','ó','ú','Á','É','Í','Ó','Ú'];
+        $sinTilde   = ['a','e','i','o','u','A','E','I','O','U'];
+        return str_replace($originales, $sinTilde, $texto);
+    }
 }
