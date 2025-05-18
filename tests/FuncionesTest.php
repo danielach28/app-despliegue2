@@ -11,4 +11,11 @@ final class FuncionesTest extends TestCase
         $resultado = Funciones::quitarTildes($texto);
         $this->assertEquals("aeiou AEIOU", $resultado);
     }
+
+    public function testQuitarTildesConTextoSinAcentos(): void
+    {
+        $texto = "hola mundo";
+        $resultado = Funciones::quitarTildes($texto);
+        $this->assertEquals("hola mundo", $resultado);
+    }
 }
