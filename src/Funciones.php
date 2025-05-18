@@ -1,6 +1,7 @@
 <?php
 
 
+
 class Funciones
 {
     public static function cargarStopwords(): array
