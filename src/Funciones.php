@@ -53,5 +53,17 @@ class Funciones
 
         arsort($frecuencias);
         return $frecuencias;
-    }  
+    }
+    
+     public static function analizarTextoFormulario(): array
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['texto'])) {
+            $texto = $_POST['texto'];
+            $stopwords = self::cargarStopwords();
+            $resultado = self::procesarTexto($texto, $stopwords);
+            return [$texto, $resultado];
+        }
+
+        return ['', []];
+    }
 }
