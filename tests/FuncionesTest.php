@@ -61,4 +61,15 @@ final class FuncionesTest extends TestCase
         $this->assertIsArray($resultado);
         $this->assertArrayHasKey('hola', $resultado);
     }
+
+    public function testAnalizarTextoFormularioSinPost(): void
+    {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        $_POST['texto'] = 'Hola mundo';
+
+        [$texto, $resultado] = Funciones::analizarTextoFormulario();
+
+        $this->assertEquals('', $texto);
+        $this->assertEmpty($resultado);
+    }
 }
