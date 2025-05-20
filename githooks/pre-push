@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+echo "Ejecutando tests con PHPUnit antes del push...\n";
+
+$output = [];
+$returnCode = 0;
+exec('vendor/bin/phpunit --colors=always', $output, $returnCode);
+
+foreach ($output as $line) {
+    echo $line . "\n";
+}
+
+if ($returnCode !== 0) {
+    echo "Los tests han fallado. Push cancelado.\n";
+    exit(1);
+}
+
+echo "Todos los tests pasaron. Puedes hacer push.\n";
+exit(0);
+
