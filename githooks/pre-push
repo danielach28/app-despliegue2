@@ -5,7 +5,7 @@ echo "Ejecutando tests con PHPUnit antes del push...\n";
 
 $output = [];
 $returnCode = 0;
-exec('vendor/bin/phpunit --colors=always', $output, $returnCode);
+exec('php vendor/phpunit/phpunit/phpunit --colors=always', $output, $returnCode);
 
 foreach ($output as $line) {
     echo $line . "\n";
