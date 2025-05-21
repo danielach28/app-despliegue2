@@ -1,21 +1,21 @@
-#!/usr/bin/env php
-<?php
+#!/bin/bash
 
-echo "Ejecutando tests con PHPUnit antes del push...\n";
+echo "Ejecutando tests con PHPUnit antes del push..."
 
-$output = [];
-$returnCode = 0;
-exec('php vendor/phpunit/phpunit/phpunit --colors=always', $output, $returnCode);
+PHPUNIT="./vendor/bin/phpunit"
 
-foreach ($output as $line) {
-    echo $line . "\n";
-}
+if [ ! -f "$PHPUNIT" ]; then
+  echo "PHPUnit no encontrado en $PHPUNIT"
+  exit 1
+fi
 
-if ($returnCode !== 0) {
-    echo "Los tests han fallado. Push cancelado.\n";
-    exit(1);
-}
+php "$PHPUNIT" --colors=always
+RESULT=$?
 
-echo "Todos los tests pasaron. Puedes hacer push.\n";
-exit(0);
+if [ $RESULT -ne 0 ]; then
+  echo "Los tests han fallado. Push cancelado."
+  exit 1
+fi
 
+echo "Todos los tests pasaron. Puedes hacer push."
+exit 0
