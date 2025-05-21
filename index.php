@@ -2,13 +2,14 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+use App\AnalizarTexto;
 use App\Funciones;
 
 
 $texto = '';
 $resultado = [];
 
-[$texto, $resultado] = Funciones::analizarTextoFormulario();
+[$texto, $resultado] = AnalizarTexto::analizar_texto_formulario();
 ?>
 
 <!DOCTYPE html>
